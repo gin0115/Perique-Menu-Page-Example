@@ -16,6 +16,7 @@ use PinkCrab\Perique\Services\View\View;
 use PinkCrab\Perique\Interfaces\Renderable;
 use PinkCrab\Perique\Application\App_Factory;
 use PinkCrab\Perique\Services\View\PHP_Engine;
+use Gin0115\Perique_Menu_Example\Page\Menu_Page_Group;
 use PinkCrab\Perique_Admin_Menu\Registration_Middleware\Page_Middleware;
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -43,7 +44,7 @@ $app = ( new App_Factory() )
 
 	// Define our classes which need to be registered.
 	->registration_classes(
-		array()
+		array( Menu_Page_Group::class )
 	)
 
 	// Define the Page Middleware (this handles the rendering of Pages & Groups)

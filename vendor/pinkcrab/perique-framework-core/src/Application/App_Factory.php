@@ -40,14 +40,14 @@ class App_Factory {
 	 */
 	protected $base_path;
 
-	public function __construct(?string $base_path = null) {
+	public function __construct( ?string $base_path = null ) {
 		$this->app = new App();
-		
-		if(null === $base_path){
-			$trace = debug_backtrace();
-			$this->base_path = isset($trace[0]['file']) ? dirname( $trace[0]['file'] ) : __DIR__;
+
+		if ( null === $base_path ) {
+			$trace           = debug_backtrace();
+			$this->base_path = isset( $trace[0]['file'] ) ? dirname( $trace[0]['file'] ) : __DIR__;
 		} else {
-			$this->base_path = $base_path;
+			$this->base_path = dirname( $base_path );
 		}
 	}
 
@@ -155,10 +155,51 @@ class App_Factory {
 	public function boot(): App {
 		// Sets default settings if not already set.
 		if ( ! $this->app->has_app_config() ) {
-			$this->app_config( array() );
+			$this->app_config( $this->default_config_paths() );
 		}
 
 		return $this->app->boot();
+	}
+
+	/**
+	 * Generates some default paths for the app_config based on base path.
+	 *
+	 * @return array{
+	 *   url:array{
+	 *    plugin:string,
+	 *    view:string,
+	 *    assets:string,
+	 *    upload_root:string,
+	 *    upload_current:string,
+	 *  },
+	 *  path:array{
+	 *    plugin:string,
+	 *    view:string,
+	 *    assets:string,
+	 *    upload_root:string,
+	 *    upload_current:string,
+	 *  }
+	 * }
+	 */
+	private function default_config_paths(): array {
+		$wp_uploads = \wp_upload_dir();
+
+		return array(
+			'path'   => array(
+				'plugin'         => $this->base_path,
+				'view'           => $this->base_path . '/views',
+				'assets'         => $this->base_path . '/assets',
+				'upload_root'    => $wp_uploads['basedir'],
+				'upload_current' => $wp_uploads['path'],
+			),
+			'url'    => array(
+				'plugin'         => plugins_url( basename( $this->base_path ) ),
+				'view'           => plugins_url( basename( $this->base_path ) ) . '/views',
+				'assets'         => plugins_url( basename( $this->base_path ) ) . '/assets',
+				'upload_root'    => $wp_uploads['baseurl'],
+				'upload_current' => $wp_uploads['url'],
+			),
+		);
 	}
 
 	/**
