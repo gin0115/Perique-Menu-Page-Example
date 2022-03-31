@@ -38,6 +38,15 @@ class Parent_Page extends Menu_Page {
 	 */
 	protected $page_slug = 'valid_primary_page';
 
+	/**
+	 * The template to be rendered.
+	 *
+	 * As we set the PHP_Engine with our views base path, would be treated as.
+	 * ..plugins/Perique_Menu_Page/views/parent-page.php
+	 *
+	 * @var string
+	 */
+	protected $view_template = 'parent-page';
 
 	/**
 	 * The view data used by view.
@@ -52,11 +61,7 @@ class Parent_Page extends Menu_Page {
 	 * @param \Gin0115\Perique_Menu_Example\Service\Translations $translations
 	 */
 	public function __construct( Translations $translations ) {
-
-		// This is set with the View base path as default;
-		$this->view_template = 'parent-page'; // ..plugins/Perique_Menu_Page/views/parent-page.php
-
-		// Set the title based on the Translation class.
+		// Set the title using the translations service.
 		$this->menu_title = $translations->get_menu_group_title();
 		$this->page_title = $translations->get_menu_group_title();
 	}
