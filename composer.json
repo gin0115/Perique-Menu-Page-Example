@@ -1,0 +1,19 @@
+{
+    "name": "gin0115/perique-menu-page-example",
+    "description": "his is an example of using the Perique Menu Page library.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Gin0115\\Perique_Menu_Example\\": "src/"
+        }
+    },
+    "authors": [{
+        "name": "Glynn Quelch",
+        "email": "glynn.quelch@gmail.com"
+    }],
+    "require": {
+        "pinkcrab/perique-framework-core": "^1.0",
+        "pinkcrab/perique-admin-menu": "^0.1.1"
+    }
+}
