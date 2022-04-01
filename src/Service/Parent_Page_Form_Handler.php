@@ -27,7 +27,6 @@ namespace Gin0115\Perique_Menu_Example\Service;
 use PinkCrab\Loader\Hook_Loader;
 use PinkCrab\Perique\Interfaces\Hookable;
 use Gin0115\Perique_Menu_Example\Page\Parent_Page;
-use Gin0115\Perique_Menu_Example\Service\page_settings;
 
 class Parent_Page_Form_Handler implements Hookable {
 
