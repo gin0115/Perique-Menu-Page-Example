@@ -82,9 +82,8 @@ class Parent_Page extends Menu_Page {
 			'settings'     => $this->settings_service,
 			'nonce'        => \wp_create_nonce( Parent_Page_Form_Handler::PARENT_PAGE_FORM_NONCE ),
 			'translations' => $translations,
-			'page' => $this
+			'page'         => $this,
 		);
 
-		// dump( $this );
 	}
 }
