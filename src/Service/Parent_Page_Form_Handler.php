@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Example of a service which can be injected as a dependency.
+ * Form Handler for the parent page.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -24,26 +24,7 @@ declare(strict_types=1);
 
 namespace Gin0115\Perique_Menu_Example\Service;
 
-class Translations {
+class Parent_Page_Form_Handler {
 
-	/**
-	 * Menu group title.
-	 */
-	public function get_menu_group_title(): string {
-		return __( 'Perique Menu', 'perique-menu-example' );
-	}
-
-	/**
-	 * Parent page title.
-	 */
-	public function get_parent_page_title(): string {
-		return __( 'Parent Page', 'perique-menu-example' );
-	}
-
-	/**
-	 * Parent menu title.
-	 */
-	public function get_parent_menu_title(): string {
-		return __( 'Parent Page', 'perique-menu-example' );
-	}
+	public const PARENT_PAGE_FORM_NONCE = 'parent_page_form_nonce';
 }

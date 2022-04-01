@@ -19,15 +19,15 @@ declare(strict_types=1);
  *
  * @author Glynn Quelch <glynn.quelch@gmail.com>
  * @license http://www.opensource.org/licenses/mit-license.html  MIT License
- * @package PinkCrab\Perique_Admin_Menu
- *
- * @docs https://www.advancedcustomfields.com/resources/acf_add_options_page/
+ * @package Gin0115\Perique_Menu_Example
  */
 
 namespace Gin0115\Perique_Menu_Example\Page;
 
 use PinkCrab\Perique_Admin_Menu\Page\Menu_Page;
 use Gin0115\Perique_Menu_Example\Service\Translations;
+use Gin0115\Perique_Menu_Example\Service\Parent_Page_Settings;
+use Gin0115\Perique_Menu_Example\Service\Parent_Page_Form_Handler;
 
 class Parent_Page extends Menu_Page {
 
@@ -49,20 +49,35 @@ class Parent_Page extends Menu_Page {
 	protected $view_template = 'parent-page';
 
 	/**
-	 * The view data used by view.
+	 * Parent Settings
 	 *
-	 * @var array{data:string}
+	 * @var Parent_Page_Settings
 	 */
-	protected $view_data = array( 'data' => 'Valid Primary Page Data' );
+	protected $settings_service;
 
 	/**
 	 * Create the page, using injected services.
 	 *
 	 * @param \Gin0115\Perique_Menu_Example\Service\Translations $translations
 	 */
-	public function __construct( Translations $translations ) {
+	public function __construct(
+		Translations $translations,
+		Parent_Page_Settings $settings_service
+	) {
 		// Set the title using the translations service.
-		$this->menu_title = $translations->get_menu_group_title();
-		$this->page_title = $translations->get_menu_group_title();
+		$this->menu_title = $translations->get_parent_menu_title();
+		$this->page_title = $translations->get_parent_page_title();
+
+		// Handles the reading and writing of settings.
+		$this->settings_service = $settings_service;
+
+		// Populate the view data.
+		$this->view_data = array(
+			'settings'     => $this->settings_service,
+			'nonce'        => \wp_create_nonce( Parent_Page_Form_Handler::PARENT_PAGE_FORM_NONCE ),
+			'translations' => $translations,
+		);
+
+		dump( $this );
 	}
 }
