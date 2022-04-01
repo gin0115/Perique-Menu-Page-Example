@@ -24,29 +24,17 @@ declare(strict_types=1);
 
 namespace Gin0115\Perique_Menu_Example\Service;
 
+/**
+ * This is a sample of a repository type service for settings.
+ * It is used to store settings in the database.
+ */
 class Parent_Page_Settings {
 
+	/**
+	 * Option keys.
+	 */
 	private const SETTING_1_KEY = 'perique_menu_example_setting_1';
 	private const SETTING_2_KEY = 'perique_menu_example_setting_2';
-
-	/**
-	 * Setting value 1
-	 *
-	 * @var string
-	 */
-	protected $setting_1;
-
-	/**
-	 * Setting value 2
-	 *
-	 * @var string
-	 */
-	protected $setting_2;
-
-	public function __construct() {
-		$this->setting_1 = get_option( self::SETTING_1_KEY, '' );
-		$this->setting_2 = get_option( self::SETTING_2_KEY, '' );
-	}
 
 	/**
 	 * Get setting 1
@@ -54,7 +42,7 @@ class Parent_Page_Settings {
 	 * @return string
 	 */
 	public function get_setting_1(): string {
-		return \esc_html( $this->setting_1 );
+		return \esc_html( get_option( self::SETTING_1_KEY, '' ) );
 	}
 
 	/**
@@ -63,7 +51,7 @@ class Parent_Page_Settings {
 	 * @return string
 	 */
 	public function get_setting_2(): string {
-		return \esc_html( $this->setting_2 );
+		return \esc_html( get_option( self::SETTING_2_KEY, '' ) );
 	}
 
 	/**
@@ -73,8 +61,7 @@ class Parent_Page_Settings {
 	 * @return self
 	 */
 	public function set_setting_1( string $setting_1 ): self {
-		$this->setting_1 = \sanitize_text_field( $setting_1 );
-		\update_option( self::SETTING_1_KEY, $this->setting_1, false );
+		\update_option( self::SETTING_1_KEY, \sanitize_text_field( $setting_1 ), false );
 		return $this;
 	}
 
@@ -82,10 +69,10 @@ class Parent_Page_Settings {
 	 * Set setting 2
 	 *
 	 * @param string $setting_2
+	 * @return self
 	 */
 	public function set_setting_2( string $setting_2 ) {
-		$this->setting_2 = \sanitize_text_field( $setting_2 );
-		\update_option( self::SETTING_2_KEY, $this->setting_2, false );
+		\update_option( self::SETTING_2_KEY, \sanitize_text_field( $setting_2 ), false );
 		return $this;
 	}
 }

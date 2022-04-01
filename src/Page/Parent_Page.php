@@ -32,11 +32,17 @@ use Gin0115\Perique_Menu_Example\Service\Parent_Page_Form_Handler;
 class Parent_Page extends Menu_Page {
 
 	/**
+	 * Slug of the parent page.
+	 * Done as a constant so can be accessed via the form handler.
+	 */
+	public const PAGE_SLUG = 'perique_parent_page';
+
+	/**
 	 * The pages menu slug.
 	 *
 	 * @var string
 	 */
-	protected $page_slug = 'valid_primary_page';
+	protected $page_slug = self::PAGE_SLUG;
 
 	/**
 	 * The template to be rendered.
@@ -76,8 +82,9 @@ class Parent_Page extends Menu_Page {
 			'settings'     => $this->settings_service,
 			'nonce'        => \wp_create_nonce( Parent_Page_Form_Handler::PARENT_PAGE_FORM_NONCE ),
 			'translations' => $translations,
+			'page' => $this
 		);
 
-		dump( $this );
+		// dump( $this );
 	}
 }
