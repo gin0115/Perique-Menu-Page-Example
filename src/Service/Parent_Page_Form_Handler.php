@@ -24,10 +24,10 @@ declare(strict_types=1);
 
 namespace Gin0115\Perique_Menu_Example\Service;
 
-use Gin0115\Lib\ORM\ORM;
 use PinkCrab\Loader\Hook_Loader;
 use PinkCrab\Perique\Interfaces\Hookable;
 use Gin0115\Perique_Menu_Example\Page\Parent_Page;
+use Gin0115\Perique_Menu_Example\Service\page_settings;
 
 class Parent_Page_Form_Handler implements Hookable {
 
@@ -35,6 +35,31 @@ class Parent_Page_Form_Handler implements Hookable {
 	 * The nonce key used for the form handling.
 	 */
 	public const PARENT_PAGE_FORM_NONCE = 'parent_page_form_nonce';
+
+	/**
+	 * The fields from the form that should be handled.
+	 * ['field_name' => 'settings_method']
+	 */
+	private const FORM_FIELDS = array(
+		'setting_1' => 'set_setting_1',
+		'setting_2' => 'set_setting_2',
+	);
+
+	/**
+	 * The parent page settings
+	 *
+	 * @var Parent_Page_Settings
+	 */
+	private $page_settings;
+
+	/**
+	 * Creates an instance with the settings repository injected.
+	 *
+	 * @param Parent_Page_Settings $page_settings
+	 */
+	public function __construct( Parent_Page_Settings $page_settings ) {
+		$this->page_settings = $page_settings;
+	}
 
 	/**
 	 * Allows the wiring of hook calls for this handler
@@ -48,8 +73,7 @@ class Parent_Page_Form_Handler implements Hookable {
 	public function register( Hook_Loader $loader ): void {
 
 		// Register the primary page, pre render hook.
-		$loader->admin_action( 'toplevel_page_' . Parent_Page::PAGE_SLUG, array( $this, 'primary_page_pre_render' ) );
-
+		$loader->admin_action( 'toplevel_page_' . Parent_Page::PAGE_SLUG, array( $this, 'run' ) );
 	}
 
 	/**
@@ -59,8 +83,56 @@ class Parent_Page_Form_Handler implements Hookable {
 	 *
 	 * @return void
 	 */
-	public function primary_page_pre_render(): void {
-		print( 'BEFORE PAGE RENDERING' );
+	public function run(): void {
+		// Bail if form is not submitted or nonce fails validation
+		if ( ! $this->form_submitted() || ! $this->validate_form_request() ) {
+			return;
+		}
+		$this->update_settings_from_form();
+	}
+
+	/**
+	 * Checks if the form has been submitted.
+	 *
+	 * Does this by looking for the page nonce in post.
+	 *
+	 * @return bool
+	 */
+	private function form_submitted(): bool {
+		return \array_key_exists(
+			self::PARENT_PAGE_FORM_NONCE,
+			$_POST // phpcs:ignore WordPress.Security.NonceVerification.Missing, validated afterwards.
+		);
+	}
+
+	/**
+	 * Verifies the nonce for the form.
+	 *
+	 * @return bool
+	 */
+	private function validate_form_request(): bool {
+		return (bool) \wp_verify_nonce(
+			self::PARENT_PAGE_FORM_NONCE,
+			\sanitize_text_field( $_POST['primary_page_nonce'] )
+		);
+	}
+
+	/**
+	 * Updates the settings based on the post values from form.
+	 *
+	 * Iterates through the settings field constant and used the field and method
+	 * to populate the settings object.
+	 *
+	 * @return void
+	 */
+	public function update_settings_from_form(): void {
+		foreach ( self::FORM_FIELDS as $field => $method ) {
+			if ( array_key_exists( $field, $_POST ) // phpcs:ignore WordPress.Security.NonceVerification.Missing, validated before being called.
+			&& \method_exists( $this->page_settings, $method )
+			) {
+				$this->page_settings->$method( \sanitize_text_field( $_POST[ $field ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing, validated before being called.
+			}
+		}
 	}
 
 }
