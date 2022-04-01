@@ -27,8 +27,6 @@ namespace Gin0115\Perique_Menu_Example\Page;
 use Gin0115\Perique_Menu_Example\Page\Parent_Page;
 use PinkCrab\Perique_Admin_Menu\Group\Abstract_Group;
 use Gin0115\Perique_Menu_Example\Service\Translations;
-// use PinkCrab\Perique_Admin_Menu\Tests\Fixtures\Valid_Group\Valid_Page;
-// use PinkCrab\Perique_Admin_Menu\Tests\Fixtures\Valid_Group\Valid_Primary_Page;
 
 class Menu_Page_Group extends Abstract_Group {
 

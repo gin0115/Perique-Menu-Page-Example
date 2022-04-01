@@ -30,20 +30,20 @@ class Translations {
 	 * Menu group title.
 	 */
 	public function get_menu_group_title(): string {
-		return __( 'Perique Menu', 'perique-menu-example' );
+		return \__( 'Perique Menu', 'perique-menu-example' );
 	}
 
 	/**
 	 * Parent page title.
 	 */
 	public function get_parent_page_title(): string {
-		return __( 'Parent Page', 'perique-menu-example' );
+		return \__( 'Parent Page', 'perique-menu-example' );
 	}
 
 	/**
 	 * Parent menu title.
 	 */
 	public function get_parent_menu_title(): string {
-		return __( 'Parent Page', 'perique-menu-example' );
+		return \__( 'Parent Page', 'perique-menu-example' );
 	}
 }

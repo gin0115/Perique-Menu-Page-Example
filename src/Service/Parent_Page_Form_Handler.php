@@ -127,7 +127,7 @@ class Parent_Page_Form_Handler implements Hookable {
 	 */
 	public function update_settings_from_form(): void {
 		foreach ( self::FORM_FIELDS as $field => $method ) {
-			if ( array_key_exists( $field, $_POST ) // phpcs:ignore WordPress.Security.NonceVerification.Missing, validated before being called.
+			if ( \array_key_exists( $field, $_POST ) // phpcs:ignore WordPress.Security.NonceVerification.Missing, validated before being called.
 			&& \method_exists( $this->page_settings, $method )
 			) {
 				$this->page_settings->$method( \sanitize_text_field( $_POST[ $field ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing, validated before being called.
