@@ -71,7 +71,6 @@ class Parent_Page_Form_Handler implements Hookable {
 	 * @return void
 	 */
 	public function register( Hook_Loader $loader ): void {
-
 		// Register the primary page, pre render hook.
 		$loader->admin_action( 'toplevel_page_' . Parent_Page::PAGE_SLUG, array( $this, 'run' ) );
 	}
@@ -88,6 +87,7 @@ class Parent_Page_Form_Handler implements Hookable {
 		if ( ! $this->form_submitted() || ! $this->validate_form_request() ) {
 			return;
 		}
+
 		$this->update_settings_from_form();
 	}
 
@@ -100,7 +100,7 @@ class Parent_Page_Form_Handler implements Hookable {
 	 */
 	private function form_submitted(): bool {
 		return \array_key_exists(
-			self::PARENT_PAGE_FORM_NONCE,
+			'primary_page_nonce',
 			$_POST // phpcs:ignore WordPress.Security.NonceVerification.Missing, validated afterwards.
 		);
 	}
@@ -112,8 +112,8 @@ class Parent_Page_Form_Handler implements Hookable {
 	 */
 	private function validate_form_request(): bool {
 		return (bool) \wp_verify_nonce(
-			self::PARENT_PAGE_FORM_NONCE,
-			\sanitize_text_field( $_POST['primary_page_nonce'] )
+			\sanitize_text_field( $_POST['primary_page_nonce'] ),
+			self::PARENT_PAGE_FORM_NONCE
 		);
 	}
 
@@ -130,7 +130,7 @@ class Parent_Page_Form_Handler implements Hookable {
 			if ( \array_key_exists( $field, $_POST ) // phpcs:ignore WordPress.Security.NonceVerification.Missing, validated before being called.
 			&& \method_exists( $this->page_settings, $method )
 			) {
-				$this->page_settings->$method( \sanitize_text_field( $_POST[ $field ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing, validated before being called.
+				$this->page_settings->$method( $_POST[ $field ] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing, validated before being called.
 			}
 		}
 	}
