@@ -54,61 +54,6 @@
             "install-path": "../level-2/dice"
         },
         {
-            "name": "pinkcrab/collection",
-            "version": "0.2.0",
-            "version_normalized": "0.2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Pink-Crab/Collection.git",
-                "reference": "c3b003e759fb33c3d7c842798ad4825b50558084"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Pink-Crab/Collection/zipball/c3b003e759fb33c3d7c842798ad4825b50558084",
-                "reference": "c3b003e759fb33c3d7c842798ad4825b50558084",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "*",
-                "gin0115/wpunit-helpers": "^1.0",
-                "object-calisthenics/phpcs-calisthenics-rules": "*",
-                "phpstan/phpstan": "^0.12.6",
-                "phpunit/phpunit": "^7.0",
-                "symfony/var-dumper": "4.*",
-                "wp-coding-standards/wpcs": "*"
-            },
-            "time": "2021-09-21T13:57:38+00:00",
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "PinkCrab\\Collection\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Glynn Quelch",
-                    "email": "glynn.quelch@pinkcrab.co.uk",
-                    "homepage": "http://clappo.co.uk",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A flexible and extendable Collection",
-            "homepage": "https://pinkcrab.co.uk",
-            "support": {
-                "issues": "https://github.com/Pink-Crab/Collection/issues",
-                "source": "https://github.com/Pink-Crab/Collection/tree/0.2.0"
-            },
-            "install-path": "../pinkcrab/collection"
-        },
-        {
             "name": "pinkcrab/hook-loader",
             "version": "1.1.2",
             "version_normalized": "1.1.2.0",
@@ -173,39 +118,38 @@
         },
         {
             "name": "pinkcrab/perique-admin-menu",
-            "version": "0.1.1",
-            "version_normalized": "0.1.1.0",
+            "version": "0.1.2",
+            "version_normalized": "0.1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Pink-Crab/Perique_Admin_Menu.git",
-                "reference": "0c3454e5968e8c58dd0e91dfb823a2766eca760d"
+                "reference": "fe673f99cb3448baf440c4736c15abd958ad3a42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Pink-Crab/Perique_Admin_Menu/zipball/0c3454e5968e8c58dd0e91dfb823a2766eca760d",
-                "reference": "0c3454e5968e8c58dd0e91dfb823a2766eca760d",
+                "url": "https://api.github.com/repos/Pink-Crab/Perique_Admin_Menu/zipball/fe673f99cb3448baf440c4736c15abd958ad3a42",
+                "reference": "fe673f99cb3448baf440c4736c15abd958ad3a42",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.0",
-                "pinkcrab/collection": "0.*",
                 "pinkcrab/perique-framework-core": "^1"
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "*",
-                "gin0115/wpunit-helpers": "dev-main",
+                "gin0115/wpunit-helpers": "~1.0.0",
                 "object-calisthenics/phpcs-calisthenics-rules": "*",
-                "php-stubs/wordpress-stubs": "^5.6.0",
-                "phpstan/phpstan": "^0.12.6",
-                "phpunit/phpunit": "^7.0",
-                "roots/wordpress": "^5.5",
+                "php-stubs/wordpress-stubs": "^5.9.0",
+                "phpstan/phpstan": "^1.0",
+                "phpunit/phpunit": "^7.0 || ^8.0",
+                "roots/wordpress": "^5.9",
                 "symfony/var-dumper": "4.*",
-                "szepeviktor/phpstan-wordpress": "^0.7.2",
+                "szepeviktor/phpstan-wordpress": "^1.0",
                 "wp-coding-standards/wpcs": "*",
-                "wp-phpunit/wp-phpunit": "^5.0",
-                "yoast/phpunit-polyfills": "^0.2.0"
+                "wp-phpunit/wp-phpunit": "^5.9",
+                "yoast/phpunit-polyfills": "^0.2.0 || ^1.0.0"
             },
-            "time": "2021-09-03T23:18:31+00:00",
+            "time": "2022-04-02T13:32:14+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -230,23 +174,23 @@
             "homepage": "https://pinkcrab.co.uk",
             "support": {
                 "issues": "https://github.com/Pink-Crab/Perique_Admin_Menu/issues",
-                "source": "https://github.com/Pink-Crab/Perique_Admin_Menu/tree/0.1.1"
+                "source": "https://github.com/Pink-Crab/Perique_Admin_Menu/tree/0.1.2"
             },
             "install-path": "../pinkcrab/perique-admin-menu"
         },
         {
             "name": "pinkcrab/perique-framework-core",
-            "version": "1.0.8",
-            "version_normalized": "1.0.8.0",
+            "version": "1.1.0",
+            "version_normalized": "1.1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Pink-Crab/Perqiue-Framework.git",
-                "reference": "be5922bc7eeacfc96856e8fd5ee9769bb84113ab"
+                "url": "https://github.com/Pink-Crab/Perique-Framework.git",
+                "reference": "de6229b8e68fc78609fabadf8c68064eb6dc4592"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Pink-Crab/Perqiue-Framework/zipball/be5922bc7eeacfc96856e8fd5ee9769bb84113ab",
-                "reference": "be5922bc7eeacfc96856e8fd5ee9769bb84113ab",
+                "url": "https://api.github.com/repos/Pink-Crab/Perique-Framework/zipball/de6229b8e68fc78609fabadf8c68064eb6dc4592",
+                "reference": "de6229b8e68fc78609fabadf8c68064eb6dc4592",
                 "shasum": ""
             },
             "require": {
@@ -259,17 +203,17 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "*",
                 "gin0115/wpunit-helpers": "~1.0.0",
                 "object-calisthenics/phpcs-calisthenics-rules": "*",
-                "php-stubs/wordpress-stubs": "^5.8.0",
+                "php-stubs/wordpress-stubs": "^5.9.0",
                 "phpstan/phpstan": "^1.0",
-                "phpunit/phpunit": "^7.0",
-                "roots/wordpress": "^5.8",
+                "phpunit/phpunit": "^7.0 || ^8.0",
+                "roots/wordpress": "^5.9",
                 "symfony/var-dumper": "4.*",
                 "szepeviktor/phpstan-wordpress": "^1.0",
                 "wp-coding-standards/wpcs": "*",
-                "wp-phpunit/wp-phpunit": "^5.8",
+                "wp-phpunit/wp-phpunit": "^5.9",
                 "yoast/phpunit-polyfills": "^0.2.0 || ^1.0.0"
             },
-            "time": "2021-12-29T13:33:52+00:00",
+            "time": "2022-03-31T23:16:22+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -292,8 +236,8 @@
             "description": "The core package of the PinkCrab Perique framework.",
             "homepage": "https://pinkcrab.co.uk",
             "support": {
-                "issues": "https://github.com/Pink-Crab/Perqiue-Framework/issues",
-                "source": "https://github.com/Pink-Crab/Perqiue-Framework/tree/1.0.8"
+                "issues": "https://github.com/Pink-Crab/Perique-Framework/issues",
+                "source": "https://github.com/Pink-Crab/Perique-Framework/tree/1.1.0"
             },
             "install-path": "../pinkcrab/perique-framework-core"
         },

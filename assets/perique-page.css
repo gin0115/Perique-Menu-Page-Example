@@ -1,0 +1,25 @@
+/**
+ * This is an example of a css file only for the primary page.
+ */
+
+#primary_page_settings_form {
+    background-color: aquamarine;
+    padding: 0.5rem;
+}
+
+.form-field {
+    padding: 0.5rem;
+}
+
+label {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.api-item__container {
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    background-color: azure;
+}

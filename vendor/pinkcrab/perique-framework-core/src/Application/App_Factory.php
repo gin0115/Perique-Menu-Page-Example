@@ -44,10 +44,10 @@ class App_Factory {
 		$this->app = new App();
 
 		if ( null === $base_path ) {
-			$trace           = debug_backtrace();
-			$this->base_path = isset( $trace[0]['file'] ) ? dirname( $trace[0]['file'] ) : __DIR__;
+			$trace           = debug_backtrace(); //phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_debug_backtrace
+			$this->base_path = isset( $trace[0]['file'] ) ? \trailingslashit( dirname( $trace[0]['file'] ) ) : __DIR__;
 		} else {
-			$this->base_path = dirname( $base_path );
+			$this->base_path = \trailingslashit( $base_path );
 		}
 	}
 
@@ -86,7 +86,6 @@ class App_Factory {
 
 	/**
 	 * Returns the basic DI rules which are used to set.
-	 * WPDB
 	 * Renderable with PHP_Engine implementation
 	 *
 	 * @return array<mixed>
@@ -165,7 +164,7 @@ class App_Factory {
 	 * Generates some default paths for the app_config based on base path.
 	 *
 	 * @return array{
-	 *   url:array{
+	 *  url:array{
 	 *    plugin:string,
 	 *    view:string,
 	 *    assets:string,
@@ -185,17 +184,17 @@ class App_Factory {
 		$wp_uploads = \wp_upload_dir();
 
 		return array(
-			'path'   => array(
-				'plugin'         => $this->base_path,
-				'view'           => $this->base_path . '/views',
-				'assets'         => $this->base_path . '/assets',
+			'path' => array(
+				'plugin'         => rtrim( $this->base_path, \DIRECTORY_SEPARATOR ),
+				'view'           => rtrim( $this->base_path, \DIRECTORY_SEPARATOR ) . '/views',
+				'assets'         => rtrim( $this->base_path, \DIRECTORY_SEPARATOR ) . '/assets',
 				'upload_root'    => $wp_uploads['basedir'],
 				'upload_current' => $wp_uploads['path'],
 			),
-			'url'    => array(
-				'plugin'         => plugins_url( basename( $this->base_path ) ),
-				'view'           => plugins_url( basename( $this->base_path ) ) . '/views',
-				'assets'         => plugins_url( basename( $this->base_path ) ) . '/assets',
+			'url'  => array(
+				'plugin'         => rtrim( plugins_url( basename( $this->base_path ) ), \DIRECTORY_SEPARATOR ),
+				'view'           => rtrim( plugins_url( basename( $this->base_path ) ), \DIRECTORY_SEPARATOR ) . '/views',
+				'assets'         => rtrim( plugins_url( basename( $this->base_path ) ), \DIRECTORY_SEPARATOR ) . '/assets',
 				'upload_root'    => $wp_uploads['baseurl'],
 				'upload_current' => $wp_uploads['url'],
 			),

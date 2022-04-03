@@ -17,7 +17,6 @@ class ComposerStaticInit4492d9a45fbb37c071377a4bd25a3e6e
             'PinkCrab\\Perique_Admin_Menu\\' => 28,
             'PinkCrab\\Perique\\' => 17,
             'PinkCrab\\Loader\\' => 16,
-            'PinkCrab\\Collection\\' => 20,
         ),
         'G' => 
         array (
@@ -45,10 +44,6 @@ class ComposerStaticInit4492d9a45fbb37c071377a4bd25a3e6e
         'PinkCrab\\Loader\\' => 
         array (
             0 => __DIR__ . '/..' . '/pinkcrab/hook-loader/src',
-        ),
-        'PinkCrab\\Collection\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/pinkcrab/collection/src',
         ),
         'Gin0115\\Perique_Menu_Example\\' => 
         array (

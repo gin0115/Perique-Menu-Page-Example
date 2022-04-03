@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * The group which contains all the pages used in this
+ * Sample of a child page.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -24,56 +24,62 @@ declare(strict_types=1);
 
 namespace Gin0115\Perique_Menu_Example\Page;
 
-use Gin0115\Perique_Menu_Example\Page\Child_Page;
+use PinkCrab\Perique_Admin_Menu\Page\Menu_Page;
 use Gin0115\Perique_Menu_Example\Page\Parent_Page;
-use PinkCrab\Perique_Admin_Menu\Group\Abstract_Group;
 use Gin0115\Perique_Menu_Example\Service\Translations;
+use Gin0115\Perique_Menu_Example\Service\Public_Api_Provider;
 
-class Menu_Page_Group extends Abstract_Group {
+class Child_Page extends Menu_Page {
 
 	/**
-	 * The primary page of the group.
+	 * Slug of the parent page.
+	 * Done as a constant so can be accessed via the form handler.
+	 */
+	public const PAGE_SLUG = 'perique_child_page';
+
+	/**
+	 * The pages parent slug.
 	 *
 	 * @var string
 	 */
-	protected $primary_page = Parent_Page::class;
+	protected $parent_slug = Parent_Page::PAGE_SLUG;
 
 	/**
-	 * The pages in the group.
-	 *
-	 * @var array
-	 */
-	protected $pages = array( Parent_Page::class, Child_Page::class );
-
-	/**
-	 * The capability required to access the group.
+	 * The pages menu slug.
 	 *
 	 * @var string
 	 */
-	protected $capability = 'manage_options';
+	protected $page_slug = self::PAGE_SLUG;
 
 	/**
-	 * The group ICON
+	 * The template to be rendered.
+	 *
+	 * As we set the PHP_Engine with our views base path, would be treated as.
+	 * ..plugins/Perique_Menu_Page/views/child-page.php
 	 *
 	 * @var string
 	 */
-	protected $icon = 'dashicons-admin-generic';
+	protected $view_template = 'child-page';
 
 	/**
-	 * The menu groups position.
+	 * Create the page, using injected services.
 	 *
-	 * @var string
+	 * @param \Gin0115\Perique_Menu_Example\Service\Translations $translations
 	 */
-	protected $position = 65;
+	public function __construct(
+		Translations $translations,
+		Public_Api_Provider $api_provider
+	) {
+		// Set the title using the translations service.
+		$this->menu_title = $translations->get_child_menu_title();
+		$this->page_title = $translations->get_child_page_title();
 
-	/**
-	 * Is constructed using the DI Container
-	 * Translations is passed constructed, automatically.
-	 *
-	 * @param Translations $translations
-	 */
-	public function __construct( Translations $translations ) {
-		// Define the group title from the injected TRANSLATIONS service.
-		$this->group_title = $translations->get_menu_group_title();
+		// Populate the view data.
+		$this->view_data = array(
+			'api_list'     => $api_provider->get_api_list(),
+			'translations' => $translations,
+			'page'         => $this,
+		);
+
 	}
 }

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Example of a service which can be injected as a dependency.
+ * Service which returns data from https://api.publicapis.org/entries
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -24,45 +24,44 @@ declare(strict_types=1);
 
 namespace Gin0115\Perique_Menu_Example\Service;
 
-class Translations {
+class Public_Api_Provider {
 
 	/**
-	 * Menu group title.
-	 * @return string
+	 * Gets a list of public APIS.
+	 *
+	 * @return array{
+	 *    count:int,
+	 *    entries:array{
+	 *       API:string,
+	 *       Description:string,
+	 *       Auth:string,
+	 *       HTTPS:bool,
+	 *       Cors:string,
+	 *       Link:string,
+	 *       Category:string,
+	 *    }
+	 * }
 	 */
-	public function get_menu_group_title(): string {
-		return \__( 'Perique Menu', 'perique-menu-example' );
+	public function get_api_list(): array {
+		$api_response = $this->do_get_call();
+
+		if ( null === $api_response || $api_response['response']['code'] !== 200 ) {
+			return array(
+				'count'   => 0,
+				'entries' => array(),
+			);
+		}
+
+		return \json_decode( $api_response['body'], true );
 	}
 
 	/**
-	 * Parent page title.
-	 * @return string
+	 * Get the HTTP response
+	 *
+	 * @return array|null
 	 */
-	public function get_parent_page_title(): string {
-		return \__( 'Parent Page Title', 'perique-menu-example' );
-	}
-
-	/**
-	 * Parent menu title.
-	 * @return string
-	 */
-	public function get_parent_menu_title(): string {
-		return \__( 'Parent Page', 'perique-menu-example' );
-	}
-
-	/**
-	 * Child page title.
-	 * @return string
-	 */
-	public function get_child_page_title(): string {
-		return \__( 'Child Page Title', 'perique-menu-example' );
-	}
-
-	/**
-	 * Child menu title.
-	 * @return string
-	 */
-	public function get_child_menu_title(): string {
-		return \__( 'Child Page', 'perique-menu-example' );
+	protected function do_get_call() {
+		$results = wp_remote_get( 'https://api.publicapis.org/entries' );
+		return is_array( $results ) ? $results : null;
 	}
 }
