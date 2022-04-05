@@ -131,9 +131,7 @@ class Parent_Page extends Menu_Page {
     );
   }
 
-  /**
-   * Runs the form handler before the page is loaded.
-   */
+  /** Runs the form handler before the page is loaded. */
   public function load( Page $page ): void {
     $this->form_handler->run();
   }
