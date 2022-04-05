@@ -45,8 +45,7 @@ $app = ( new App_Factory() )
 	// Define our classes which need to be registered.
 	->registration_classes(
 		array(
-			Menu_Page_Group::class,
-			Parent_Page_Form_Handler::class,
+			Menu_Page_Group::class
 		)
 	)
 
