@@ -179,3 +179,13 @@ This acts as our primary page for the group, clicking either the group title or 
 * The setting values are fetched form the `Plugin_Settings` object, passed to the view as `$settings`
 * In an ideal world, all labels and any other string would be handled by the `Translations` service also. Removing any string literals and magic numbers from the template.
 * The templates css is provided by the shared CSS file enqueued at the [group level](#menu-group)
+
+### Child_Page \[Model\]
+Our child page makes use of an injected service to list a collection of Public Api's and there basic details. This makes use of a very basic service `Public_Api_Provider` which handles the HTTP call and failures.
+
+
+
+
+
+> In this example page, we make use of the `Renderable` objects `render()` method to break the templated in 2 sections.
+
