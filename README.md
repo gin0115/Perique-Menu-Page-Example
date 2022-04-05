@@ -40,43 +40,43 @@ This created a group for our pages, unlike adding the page and sub pages manuall
 ```php
 class Menu_Page_Group extends Abstract_Group {
 
-	/** The primary page of the group. */
-	protected $primary_page = Parent_Page::class;
+  /** The primary page of the group. */
+  protected $primary_page = Parent_Page::class;
 
-	/** The pages in the group. */
-	protected $pages = array( Parent_Page::class, Child_Page::class );
+  /** The pages in the group. */
+  protected $pages = array( Parent_Page::class, Child_Page::class );
 
-	/** The capability required to access the group. */
-	protected $capability = 'manage_options';
+  /** The capability required to access the group. */
+  protected $capability = 'manage_options';
 
-	/** The group ICON */
-	protected $icon = 'dashicons-admin-generic';
+  /** The group ICON */
+  protected $icon = 'dashicons-admin-generic';
 
-	/** The menu groups position.*/
-	protected $position = 65;
+  /** The menu groups position.*/
+  protected $position = 65;
 
-	/** @var App_Config  */
-	private $app_config;
+  /** @var App_Config  */
+  private $app_config;
 
-	/** Is constructed using the DI Container */
-	public function __construct( Translations $translations, App_Config $app_config ) {
-		// Define the group title from the injected TRANSLATIONS service.
-		$this->group_title = $translations->get_menu_group_title();
+  /** Is constructed using the DI Container */
+  public function __construct( Translations $translations, App_Config $app_config ) {
+    // Define the group title from the injected TRANSLATIONS service.
+    $this->group_title = $translations->get_menu_group_title();
 
-		// Set app config for path access
-		$this->app_config = $app_config;
-	}
+    // Set app config for path access
+    $this->app_config = $app_config;
+  }
 
-	/** Enqueues the page css file with all pages. */
-	public function enqueue( Abstract_Group $group, Page $page ): void {
-		// Enqueue the custom page assets.
-		\wp_enqueue_style(
-			'perique-menu-example-primary-page-style',
-			$this->app_config->url( 'assets' ) . 'perique-page.css',
-			array(),
-			$this->app_config->version()
-		);
-	}
+  /** Enqueues the page css file with all pages. */
+  public function enqueue( Abstract_Group $group, Page $page ): void {
+    // Enqueue the custom page assets.
+    \wp_enqueue_style(
+      'perique-menu-example-primary-page-style',
+      $this->app_config->url( 'assets' ) . 'perique-page.css',
+      array(),
+      $this->app_config->version()
+    );
+  }
 }
 ```
 
