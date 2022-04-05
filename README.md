@@ -20,7 +20,10 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 // Boot a barebones version of perique
 $app = ( new App_Factory() )
-  // Perique bootstrap as normal.     
+  // Perique bootstrap as normal. 
+  ->di_rules([
+    '*' => ['substitutions' => [Renderable::class => new PHP_Engine __DIR__ . '/views' )] ],
+  ])    
   ->construct_registration_middleware( Page_Middleware::class )
   ->registration_classes( array( Menu_Page_Group::class ) )
   ->boot();
@@ -84,3 +87,57 @@ class Menu_Page_Group extends Abstract_Group {
 * A shared CSS file is added for all Pages using the `enqueue()` method. This makes use of `App_Config` which we inject in via the DI Container for access to `Asset` paths.
 
 > While not included here, there is also a `public function load( Abstract_Group $group, Page $page ): void` method, that allows for shared `on-load` actions. These are fired before the page loads.
+
+## Pages
+
+As defined in the `Menu_Page_Group` object, this group contains 2 pages. As with the group, these are constructed via the [DI Container](https://perique.info/core/DI), so can be injected with services.
+
+### Parent_Page
+This acts as our primary page for the group, clicking either the group title or the page in the sub menu will access the page.
+
+> In this example we are using the `load(Page $page): void` to trigger the form handling when the settings form is submitted. We also inject the Plugin_Settings service, to allow for accessing the settings values in the view.
+
+```php
+class Parent_Page extends Menu_Page {
+
+	/** The pages menu slug.*/
+	protected $page_slug = 'perique_parent_page';
+
+	/** The template to be rendered. (full path plugins/Perique_Menu_Page/views/parent-page.php)*/
+	protected $view_template = 'parent-page';
+
+	/** Parent Form Handler	 */
+	protected Parent_Page_Form_Handler $form_handler;
+
+	public function __construct(
+		Translations $translations,
+		Parent_Page_Settings $settings_service,
+		Parent_Page_Form_Handler $form_handler
+	) {
+		// Set the title using the translations service.
+		$this->menu_title = $translations->get_parent_menu_title();
+		$this->page_title = $translations->get_parent_page_title();
+
+		// Handles the form submission.
+		$this->form_handler = $form_handler;
+
+		// Populate the view data.
+		$this->view_data = array(
+			'settings'     => $settings_service,
+			'nonce'        => \wp_create_nonce( Parent_Page_Form_Handler::PARENT_PAGE_FORM_NONCE ),
+			'translations' => $translations,
+			'page'         => $this,
+		);
+	}
+
+	/**
+	 * Runs the form handler before the page is loaded.
+	 */
+	public function load( Page $page ): void {
+		$this->form_handler->run();
+	}
+}
+```
+* The page and menu titles are populated via the `Translations` service, this allows for reusing of common strings and i18n translations.
+* Both the `Parent_Page_Settings` for accessing settings and `Parent_Page_Form_Handler` for handling form submissions are injected via the DI Container (with `Translations`)
+* The template path is added as just `parent-page`, this is resolved as `plugins/Perique_Menu_Page/views/` thanks to 

@@ -27,7 +27,6 @@ declare(strict_types=1);
 namespace Gin0115\Perique_Menu_Example\Page;
 
 use PinkCrab\Perique_Admin_Menu\Page\Menu_Page;
-use Gin0115\Perique_Menu_Example\Page\Parent_Page;
 use Gin0115\Perique_Menu_Example\Service\Translations;
 use Gin0115\Perique_Menu_Example\Service\Public_Api_Provider;
 
