@@ -183,7 +183,34 @@ This acts as our primary page for the group, clicking either the group title or 
 ### Child_Page \[Model\]
 Our child page makes use of an injected service to list a collection of Public Api's and there basic details. This makes use of a very basic service `Public_Api_Provider` which handles the HTTP call and failures.
 
+```php
+class Child_Page extends Menu_Page {
+  /** The pages menu slug. */
+  protected $page_slug = 'perique_child_page';
 
+  /** The template to be rendered. */
+  protected $view_template = 'child-page';
+
+  public function __construct(
+    Translations $translations,
+    Public_Api_Provider $api_provider
+  ) {
+    // Set the title using the translations service.
+    $this->menu_title = $translations->get_child_menu_title();
+    $this->page_title = $translations->get_child_page_title();
+
+    // Populate the view data.
+    $this->view_data = array(
+      'api_list'     => $api_provider->get_api_list(),
+      'translations' => $translations,
+      'page'         => $this,
+    );
+  }
+}
+```
+* Like the [parent pages model](#parent_page-model), we make use of the `Translations` object to handle page and menu titles.
+* The template path is added as just `child-page`, this is resolved as `plugins/Perique_Menu_Page/views/` thanks to `[Renderable::class => new PHP_Engine __DIR__ . '/views' )]` defining(in plugin entry file) the base path for views in the `views` dir
+* The data from the API List is populated from the `Public_Api_Provider` which is injected. *`get_api_list()` could have been called inside the template, to avoid populating this every time WP is loaded. It could also be cached too if required*
 
 
 
