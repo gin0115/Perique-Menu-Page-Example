@@ -23,8 +23,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 // Boot a barebones version of perique
 $app = ( new App_Factory() )
-	// ->app_config( array() )
-
 	// This forces us to use default di rues
 	// (sets view engine to php and base path to plugin root)
 	// We don't use this in this example, but it is useful
@@ -43,11 +41,7 @@ $app = ( new App_Factory() )
 	)
 
 	// Define our classes which need to be registered.
-	->registration_classes(
-		array(
-			Menu_Page_Group::class
-		)
-	)
+	->registration_classes( array( Menu_Page_Group::class ) )
 
 	// Define the Page Middleware (this handles the rendering of Pages & Groups)
 	->construct_registration_middleware( Page_Middleware::class )

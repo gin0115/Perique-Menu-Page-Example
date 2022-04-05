@@ -33,7 +33,7 @@ Perique is bootstrapped as normal. The base view path is defined `/views` in thi
 
 ### Menu Group
 
-![Menu Group in WP Admin](docs/Menu_Group.png)
+![Menu Group in WP Admin](docs/Menu_Group_Preview.png)
 
 The menu group acts as a 
 
