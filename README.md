@@ -220,10 +220,44 @@ The view for the child page, we make use of the `Renderable` objects `render()` 
 <div class="wrap">
   <h2><?php echo $translations->get_child_page_title(); ?>
   </h2>
-  <p>Found <?php echo (int) $api_list['count']; ?> pubic API's</p>
+  <p>Found <?php echo (int) $api_list['count']; ?> pubic APIs</p>
   <?php foreach ( $api_list['entries'] as $key => $value ) : ?>
     <?php $this->render( 'public-api-row', array('key' => $key, 'row' => $value) ); ?>
   <?php endforeach; ?>
 </div>
 ```
 > `$this` gives us access to the current `Renderable` implementation, which allows for the use of `partial` templates. As seen in the foreach loop.
+
+```php
+// public-api-row.php
+<div id="api-<?php echo \absint( $key ); ?>" class="api-item__container">
+  <div class="api-item__details">
+    <h3><?php echo \esc_html( $row['API'] ); ?><span>(<?php echo \esc_html( $row['Category'] ); ?>)</span></h3>
+    <p><?php echo \esc_html( $row['Description'] ); ?></p>
+    <p><?php echo \esc_url( $row['Link'] ); ?></p>
+  </div>
+  <div class="api-item__features">
+    <?php
+      printf(
+        '<p class="api-item__feature cors"><span class="dashicons dashicons-rest-api"></span> Cors : %s </p>',
+        \esc_html( ucfirst( $row['Cors'] ) ),
+      );
+    ?>
+    <?php
+      printf(
+        '<p class="api-item__feature https"><span class="dashicons dashicons-%s"></span> %s </p>',
+        true === $row['HTTPS'] ? 'lock' : 'unlock',
+        true === $row['HTTPS'] ? 'HTTPS' : 'HTTP',
+      );
+    ?>
+    <?php
+      printf(
+        '<p class="api-item__feature auth"><span class="dashicons dashicons-vault"></span> Auth : %s</p>',
+        '' === $row['Auth'] ? 'None' : esc_html( ucfirst( $row['Auth'] ) ),
+      );
+    ?>
+  </div>
+</div>
+```
+For every iteration of the foreach loop this template is parsed with the passed data. 
+> We have done all the formatting and simple logic in the template, this easily could be formatted using an intermediary service between Public_Api_Provider and the View.
