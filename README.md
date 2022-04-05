@@ -178,3 +178,4 @@ This acts as our primary page for the group, clicking either the group title or 
 * The nonce value is defined as part of the view data using `$nonce`, this allows for a simple and clean `echo` of it value.
 * The setting values are fetched form the `Plugin_Settings` object, passed to the view as `$settings`
 * In an ideal world, all labels and any other string would be handled by the `Translations` service also. Removing any string literals and magic numbers from the template.
+* The templates css is provided by the shared CSS file enqueued at the [group level](#menu-group)
