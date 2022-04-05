@@ -22,7 +22,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 $app = ( new App_Factory() )
   // Perique bootstrap as normal. 
   ->di_rules([
-    '*' => ['substitutions' => [Renderable::class => new PHP_Engine __DIR__ . '/views' )] ],
+    '*' => ['substitutions' => 
+      [Renderable::class => new PHP_Engine __DIR__ . '/views' )] 
+    ],
   ])    
   ->construct_registration_middleware( Page_Middleware::class )
   ->registration_classes( array( Menu_Page_Group::class ) )
