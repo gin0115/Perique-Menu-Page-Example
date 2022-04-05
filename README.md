@@ -263,3 +263,7 @@ The view for the child page, we make use of the `Renderable` objects `render()` 
 ```
 For every iteration of the foreach loop this template is parsed with the passed data. 
 > We have done all the formatting and simple logic in the template, this easily could be formatted using an intermediary service between Public_Api_Provider and the View.
+
+***
+
+If you would rather use BLADE templates over the base PHP_Engine, you can include the [BladeOne Provider](https://github.com/Pink-Crab/Perique-BladeOne-Provider) and make use Blade Templates for a cleaner template generation.
