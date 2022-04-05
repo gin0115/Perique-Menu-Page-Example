@@ -101,36 +101,35 @@ This acts as our primary page for the group, clicking either the group title or 
 
 ```php
 class Parent_Page extends Menu_Page {
+  /** The pages menu slug.*/
+  protected $page_slug = 'perique_parent_page';
 
-	/** The pages menu slug.*/
-	protected $page_slug = 'perique_parent_page';
+  /** The template to be rendered. (full path plugins/Perique_Menu_Page/views/parent-page.php)*/
+  protected $view_template = 'parent-page';
 
-	/** The template to be rendered. (full path plugins/Perique_Menu_Page/views/parent-page.php)*/
-	protected $view_template = 'parent-page';
+  /** Parent Form Handler */
+  protected Parent_Page_Form_Handler $form_handler;
 
-	/** Parent Form Handler	 */
-	protected Parent_Page_Form_Handler $form_handler;
+  public function __construct(
+    Translations $translations,
+    Parent_Page_Settings $settings_service,
+    Parent_Page_Form_Handler $form_handler
+  ) {
+    // Set the title using the translations service.
+    $this->menu_title = $translations->get_parent_menu_title();
+    $this->page_title = $translations->get_parent_page_title();
 
-	public function __construct(
-		Translations $translations,
-		Parent_Page_Settings $settings_service,
-		Parent_Page_Form_Handler $form_handler
-	) {
-		// Set the title using the translations service.
-		$this->menu_title = $translations->get_parent_menu_title();
-		$this->page_title = $translations->get_parent_page_title();
+    // Handles the form submission.
+    $this->form_handler = $form_handler;
 
-		// Handles the form submission.
-		$this->form_handler = $form_handler;
-
-		// Populate the view data.
-		$this->view_data = array(
-			'settings'     => $settings_service,
-			'nonce'        => \wp_create_nonce( Parent_Page_Form_Handler::PARENT_PAGE_FORM_NONCE ),
-			'translations' => $translations,
-			'page'         => $this,
-		);
-	}
+    // Populate the view data.
+    $this->view_data = array(
+      'settings'     => $settings_service,
+      'nonce'        => \wp_create_nonce( Parent_Page_Form_Handler::PARENT_PAGE_FORM_NONCE ),
+      'translations' => $translations,
+      'page'         => $this,
+    );
+  }
 
 	/**
 	 * Runs the form handler before the page is loaded.
