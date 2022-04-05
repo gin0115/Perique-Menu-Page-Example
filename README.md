@@ -131,12 +131,12 @@ class Parent_Page extends Menu_Page {
     );
   }
 
-	/**
-	 * Runs the form handler before the page is loaded.
-	 */
-	public function load( Page $page ): void {
-		$this->form_handler->run();
-	}
+  /**
+   * Runs the form handler before the page is loaded.
+   */
+  public function load( Page $page ): void {
+    $this->form_handler->run();
+  }
 }
 ```
 * The page and menu titles are populated via the `Translations` service, this allows for reusing of common strings and i18n translations.
