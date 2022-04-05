@@ -94,7 +94,7 @@ class Menu_Page_Group extends Abstract_Group {
 
 As defined in the `Menu_Page_Group` object, this group contains 2 pages. As with the group, these are constructed via the [DI Container](https://perique.info/core/DI), so can be injected with services.
 
-### Parent_Page
+### Parent_Page \[Model\]
 This acts as our primary page for the group, clicking either the group title or the page in the sub menu will access the page.
 
 > In this example we are using the `load(Page $page): void` to trigger the form handling when the settings form is submitted. We also inject the Plugin_Settings service, to allow for accessing the settings values in the view.
@@ -142,4 +142,5 @@ class Parent_Page extends Menu_Page {
 ```
 * The page and menu titles are populated via the `Translations` service, this allows for reusing of common strings and i18n translations.
 * Both the `Parent_Page_Settings` for accessing settings and `Parent_Page_Form_Handler` for handling form submissions are injected via the DI Container (with `Translations`)
-* The template path is added as just `parent-page`, this is resolved as `plugins/Perique_Menu_Page/views/` thanks to 
+* The template path is added as just `parent-page`, this is resolved as `plugins/Perique_Menu_Page/views/` thanks to `[Renderable::class => new PHP_Engine __DIR__ . '/views' )]` defining the base path for views in the `views` dir
+* The view_data is populated in the constructor, these params are passed through to the 'view_template' for parsing.
