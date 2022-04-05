@@ -40,22 +40,22 @@ This created a group for our pages, unlike adding the page and sub pages manuall
 class Menu_Page_Group extends Abstract_Group {
 
   /** The primary page of the group. */
-  protected $primary_page = Parent_Page::class;
+  protected Page $primary_page = Parent_Page::class;
 
   /** The pages in the group. */
-  protected $pages = array( Parent_Page::class, Child_Page::class );
+  protected array $pages = array( Parent_Page::class, Child_Page::class );
 
   /** The capability required to access the group. */
-  protected $capability = 'manage_options';
+  protected string $capability = 'manage_options';
 
   /** The group ICON */
-  protected $icon = 'dashicons-admin-generic';
+  protected string $icon = 'dashicons-admin-generic';
 
   /** The menu groups position.*/
-  protected $position = 65;
+  protected int $position = 65;
 
-  /** @var App_Config  */
-  private $app_config;
+  /** Access to the App_Config for paths.  */
+  private App_Config $app_config;
 
   /** Is constructed using the DI Container */
   public function __construct( Translations $translations, App_Config $app_config ) {
