@@ -79,6 +79,8 @@ class Menu_Page_Group extends Abstract_Group {
 }
 ```
 
-Above the register the 2 pages `Parent_Page` & `Child_Page` , under a group title which we get from the `Translations` service. This is injected in at runtime. 
+* Above the register the 2 pages `Parent_Page` & `Child_Page` , with the `Parent_Page`, as the parent.
+* The group title which we get from the `Translations` service. This is injected in at runtime. (Any of the Group properties, can be populated in `__construct` or defined as literal property values.)
+* A shared CSS file is added for all Pages using the `enqueue()` method. This makes use of `App_Config` which we inject in via the DI Container for access to `Asset` paths.
 
-> Any of the Group properties, can be populated in `__construct` or defined as literal property values.
+> While not included here, there is also a `public function load( Abstract_Group $group, Page $page ): void` method, that allows for shared `on-load` actions. These are fired before the page loads.
