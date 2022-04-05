@@ -9,7 +9,6 @@
  * @var string                                                     $nonce         The nonce value for the form.
  */
 ?>
-
 <div class="wrap">
 	<h2><?php echo $translations->get_parent_page_title(); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, escaped in translations ?></h2>
 

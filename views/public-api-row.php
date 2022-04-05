@@ -1,6 +1,6 @@
 <?php
 /**
- * Public API Row (sub) Template
+ * Public API Row (sub) Template.
  *
  * Available variables:
  * @var int                    $key   The current row key

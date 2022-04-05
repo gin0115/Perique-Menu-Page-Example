@@ -21,7 +21,7 @@
  */
 ?>
 <div class="wrap">
-	<h2><?php echo $translations->get_child_page_title(); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, escaped in translations ?>
+	<h2><?php echo $translations->get_child_page_title();//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, escaped in translations ?>
 	</h2>
 	<p>Found <?php echo (int) $api_list['count']; ?> pubic API's</p>
 	<?php foreach ( $api_list['entries'] as $key => $value ) : ?>

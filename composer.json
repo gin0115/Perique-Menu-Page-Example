@@ -1,6 +1,6 @@
 {
     "name": "gin0115/perique-menu-page-example",
-    "description": "his is an example of using the Perique Menu Page library.",
+    "description": "This is an example of using the Perique Menu Page library.",
     "type": "project",
     "license": "MIT",
     "autoload": {

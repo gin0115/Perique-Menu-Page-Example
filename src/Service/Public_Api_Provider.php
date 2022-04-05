@@ -61,7 +61,7 @@ class Public_Api_Provider {
 	 * @return array|null
 	 */
 	protected function do_get_call() {
-		$results = wp_remote_get( 'https://api.publicapis.org/entries' );
+		$results = \wp_remote_get( 'https://api.publicapis.org/entries' );
 		return is_array( $results ) ? $results : null;
 	}
 }

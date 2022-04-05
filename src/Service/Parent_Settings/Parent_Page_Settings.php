@@ -31,7 +31,7 @@ namespace Gin0115\Perique_Menu_Example\Service\Parent_Settings;
 class Parent_Page_Settings {
 
 	/**
-	 * Option keys.
+	 * Option keys
 	 */
 	private const SETTING_1_KEY = 'perique_menu_example_setting_1';
 	private const SETTING_2_KEY = 'perique_menu_example_setting_2';

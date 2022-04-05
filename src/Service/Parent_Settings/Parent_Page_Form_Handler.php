@@ -39,7 +39,7 @@ class Parent_Page_Form_Handler {
 	 */
 	private const FORM_FIELDS = array(
 		'setting_1' => 'set_setting_1',
-		'setting_2' => 'set_setting_2',
+		'setting_2' => 'set_setting_2'
 	);
 
 	/**
@@ -119,4 +119,3 @@ class Parent_Page_Form_Handler {
 	}
 
 }
-

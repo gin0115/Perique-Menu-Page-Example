@@ -48,4 +48,3 @@ $app = ( new App_Factory() )
 
 	// App is now setup, just boot.
 	->boot();
-

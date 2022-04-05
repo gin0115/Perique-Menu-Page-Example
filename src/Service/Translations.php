@@ -18,7 +18,7 @@ declare(strict_types=1);
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * @author Glynn Quelch <glynn.quelch@gmail.com>
- * @license http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @license http://www.opensource.org/licenses/mit-license.html MIT License
  * @package Gin0115\Perique_Menu_Example
  */
 

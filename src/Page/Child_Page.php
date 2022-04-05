@@ -68,6 +68,5 @@ class Child_Page extends Menu_Page {
 			'translations' => $translations,
 			'page'         => $this,
 		);
-
 	}
 }
