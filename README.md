@@ -101,10 +101,10 @@ This acts as our primary page for the group, clicking either the group title or 
 
 ```php
 class Parent_Page extends Menu_Page {
-  /** The pages menu slug.*/
+  /** The pages menu slug */
   protected $page_slug = 'perique_parent_page';
 
-  /** The template to be rendered. (full path plugins/Perique_Menu_Page/views/parent-page.php)*/
+  /** The template to be rendered */
   protected $view_template = 'parent-page';
 
   /** Parent Form Handler */
@@ -141,5 +141,42 @@ class Parent_Page extends Menu_Page {
 ```
 * The page and menu titles are populated via the `Translations` service, this allows for reusing of common strings and i18n translations.
 * Both the `Parent_Page_Settings` for accessing settings and `Parent_Page_Form_Handler` for handling form submissions are injected via the DI Container (with `Translations`)
-* The template path is added as just `parent-page`, this is resolved as `plugins/Perique_Menu_Page/views/` thanks to `[Renderable::class => new PHP_Engine __DIR__ . '/views' )]` defining the base path for views in the `views` dir
+* The template path is added as just `parent-page`, this is resolved as `plugins/Perique_Menu_Page/views/` thanks to `[Renderable::class => new PHP_Engine __DIR__ . '/views' )]` defining(in plugin entry file) the base path for views in the `views` dir
 * The view_data is populated in the constructor, these params are passed through to the 'view_template' for parsing.
+
+### Parent_Page \[View\]
+This acts as our primary page for the group, clicking either the group title or the page in the sub menu will access the page.
+
+```php
+<div class="wrap">
+  <h2><?php echo $translations->get_parent_page_title(); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, escaped in translations ?></h2>
+
+  <div id="primary_page_settings_form">
+
+    <form action="" method="post">
+      <input type="hidden" name="primary_page_nonce" value="<?php echo \esc_html( $nonce ); ?>">
+
+      <div class="form-field">
+        <label for="setting_1">
+          Setting 1
+          <input type="text" name="setting_1" id="setting_1" value="<?php echo $settings->get_setting_1(); ?>">
+        </label>
+      </div>
+
+      <div class="form-field">
+        <label for="setting_2">
+          Setting 2
+          <input type="text" name="setting_2" id="setting_2" value="<?php echo $settings->get_setting_2(); ?>">
+        </label>
+      </div>
+
+      <div class="form-field">
+        <input class="button" type="submit" value="Update Settings">
+      </div>
+
+    </form>
+
+  </div>
+</div> 
+
+```
