@@ -89,17 +89,6 @@ class Menu_Page_Group extends Abstract_Group {
 	}
 
 	/**
-	 * Load hook callback for all pages in this group.
-	 *
-	 * @param Abstract_Group $group
-	 * @param Page $page
-	 * @return void
-	 */
-	public function load( Abstract_Group $group, Page $page ): void {
-		// Doing nothing here, just used as an example.
-	}
-
-	/**
 	 * Callback for enqueuing scripts and styles at a group level.
 	 *
 	 * @param Abstract_Group $group

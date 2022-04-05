@@ -35,17 +35,11 @@ use Gin0115\Perique_Menu_Example\Service\Parent_Settings\Parent_Page_Form_Handle
 class Parent_Page extends Menu_Page {
 
 	/**
-	 * Slug of the parent page.
-	 * Done as a constant so can be accessed via the form handler.
-	 */
-	public const PAGE_SLUG = 'perique_parent_page';
-
-	/**
 	 * The pages menu slug.
 	 *
 	 * @var string
 	 */
-	protected $page_slug = self::PAGE_SLUG;
+	protected $page_slug = 'perique_parent_page';
 
 	/**
 	 * The template to be rendered.
@@ -56,13 +50,6 @@ class Parent_Page extends Menu_Page {
 	 * @var string
 	 */
 	protected $view_template = 'parent-page';
-
-	/**
-	 * Parent Settings
-	 *
-	 * @var Parent_Page_Settings
-	 */
-	protected $settings_service;
 
 	/**
 	 * Parent Form Handler
@@ -85,15 +72,12 @@ class Parent_Page extends Menu_Page {
 		$this->menu_title = $translations->get_parent_menu_title();
 		$this->page_title = $translations->get_parent_page_title();
 
-		// Handles the reading and writing of settings.
-		$this->settings_service = $settings_service;
-
 		// Handles the form submission.
 		$this->form_handler = $form_handler;
 
 		// Populate the view data.
 		$this->view_data = array(
-			'settings'     => $this->settings_service,
+			'settings'     => $settings_service,
 			'nonce'        => \wp_create_nonce( Parent_Page_Form_Handler::PARENT_PAGE_FORM_NONCE ),
 			'translations' => $translations,
 			'page'         => $this,

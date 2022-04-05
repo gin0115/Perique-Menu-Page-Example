@@ -34,24 +34,11 @@ use Gin0115\Perique_Menu_Example\Service\Public_Api_Provider;
 class Child_Page extends Menu_Page {
 
 	/**
-	 * Slug of the parent page.
-	 * Done as a constant so can be accessed via the form handler.
-	 */
-	public const PAGE_SLUG = 'perique_child_page';
-
-	/**
-	 * The pages parent slug.
-	 *
-	 * @var string
-	 */
-	protected $parent_slug = Parent_Page::PAGE_SLUG;
-
-	/**
 	 * The pages menu slug.
 	 *
 	 * @var string
 	 */
-	protected $page_slug = self::PAGE_SLUG;
+	protected $page_slug = 'perique_child_page';
 
 	/**
 	 * The template to be rendered.
