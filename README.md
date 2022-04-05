@@ -23,5 +23,7 @@ $app = ( new App_Factory() )
   ->registration_classes( array( Menu_Page_Group::class ) ) // Define our classes which need to be registered.
   ->boot();
 ```
+Perique is bootstrapped as normal. The base view path is defined `/views` in this example (not shown here)
+* We then define the `Page_Middleware`, this allow the use of `Page` and `Group` objects to be registered via the [**Registration Process**](https://perique.info/core/Registration/) at boot time.
 
 
