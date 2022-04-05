@@ -19,7 +19,7 @@
  *    }
  * }
  */
-?>g
+?>
 <div class="wrap">
 	<h2><?php echo $translations->get_child_page_title(); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, escaped in translations ?>
 	</h2>

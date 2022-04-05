@@ -212,7 +212,18 @@ class Child_Page extends Menu_Page {
 * The template path is added as just `child-page`, this is resolved as `plugins/Perique_Menu_Page/views/` thanks to `[Renderable::class => new PHP_Engine __DIR__ . '/views' )]` defining(in plugin entry file) the base path for views in the `views` dir
 * The data from the API List is populated from the `Public_Api_Provider` which is injected. *`get_api_list()` could have been called inside the template, to avoid populating this every time WP is loaded. It could also be cached too if required*
 
+### Child_Page \[View\]
+The view for the child page, we make use of the `Renderable` objects `render()` method to break the templated in 2 sections. As with the parent page, we make use of the shared CSS defined in the Group.
 
-
-> In this example page, we make use of the `Renderable` objects `render()` method to break the templated in 2 sections.
-
+```php
+// child-page.php
+<div class="wrap">
+  <h2><?php echo $translations->get_child_page_title(); ?>
+  </h2>
+  <p>Found <?php echo (int) $api_list['count']; ?> pubic API's</p>
+  <?php foreach ( $api_list['entries'] as $key => $value ) : ?>
+    <?php $this->render( 'public-api-row', array('key' => $key, 'row' => $value) ); ?>
+  <?php endforeach; ?>
+</div>
+```
+> `$this` gives us access to the current `Renderable` implementation, which allows for the use of `partial` templates. As seen in the foreach loop.
