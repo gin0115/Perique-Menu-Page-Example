@@ -159,14 +159,16 @@ This acts as our primary page for the group, clicking either the group title or 
       <div class="form-field">
         <label for="setting_1">
           Setting 1
-          <input type="text" name="setting_1" id="setting_1" value="<?php echo $settings->get_setting_1(); ?>">
+          <input type="text" name="setting_1" id="setting_1" 
+            value="<?php echo $settings->get_setting_1(); ?>">
         </label>
       </div>
 
       <div class="form-field">
         <label for="setting_2">
           Setting 2
-          <input type="text" name="setting_2" id="setting_2" value="<?php echo $settings->get_setting_2(); ?>">
+          <input type="text" name="setting_2" id="setting_2" 
+            value="<?php echo $settings->get_setting_2(); ?>">
         </label>
       </div>
 
