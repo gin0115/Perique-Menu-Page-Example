@@ -19,10 +19,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 // Boot a barebones version of perique
 $app = ( new App_Factory() )
 	// Perique bootstrap as normal.     
-    ->construct_registration_middleware( Page_Middleware::class ) // Include the Page middleware	
-	->registration_classes( array( Menu_Page_Group::class ) )// Define our classes which need to be registered.
+	->construct_registration_middleware( Page_Middleware::class ) // Include the Page middleware	
+	->registration_classes( array( Menu_Page_Group::class ) ) // Define our classes which need to be registered.
 	->boot();
-
 ```
 
 
