@@ -1,6 +1,6 @@
 # Perique Menu Page Example
 
-This is a simple plugin created using the `PinkCrab Perique Framework`. It show cases the `Perique_Admin_Menu` module, which makes it easy to create Pages and Page Groups. All through the DI Container allowing you to keep your domains separated and testable.
+This is a simple plugin created using the `PinkCrab Perique Framework` . It show cases the `Perique_Admin_Menu` module, which makes it easy to create Pages and Page Groups. All through the DI Container allowing you to keep your domains separated and testable.
 
 > [**Perique_Admin_Menu on Github**](https://github.com/Pink-Crab/Perique_Admin_Menu)
 
@@ -25,18 +25,16 @@ $app = ( new App_Factory() )
   ->registration_classes( array( Menu_Page_Group::class ) )
   ->boot();
 ```
+
 Perique is bootstrapped as normal. The base view path is defined `/views` in this example (not shown here)
 * We then define the `Page_Middleware`, this allow the use of `Page` and `Group` objects to be registered via the [**Registration Process**](https://perique.info/core/Registration/) at boot time. This added using `construct_registration_middleware`, so all middleware dependencies are injected by the [DI Container](https://perique.info/core/DI)
 * The `Menu_Page_Group` class is added to the list of [Registration Classes](https://perique.info/core/App/setup#configregistrationphp). This allows the group and its pages to be registered with WP_Admin and constructed via the DI Container with any dependencies injected.
-
-
 
 ### Menu Group
 
 ![Menu Group in WP Admin](docs/Menu_Group_Preview.png)
 
-This created a group for our pages, unlike adding the page and sub pages manually, this allows for the parent group to have its own `menu_title`, independent to the primary page.
-
+This created a group for our pages, unlike adding the page and sub pages manually, this allows for the parent group to have its own `menu_title` , independent to the primary page.
 
 ```php
 class Menu_Page_Group extends Abstract_Group {
@@ -81,4 +79,6 @@ class Menu_Page_Group extends Abstract_Group {
 }
 ```
 
+Above the register the 2 pages `Parent_Page` & `Child_Page` , under a group title which we get from the `Translations` service. This is injected in at runtime. 
 
+> Any of the Group properties, can be populated in `__construct` or defined as literal property values.

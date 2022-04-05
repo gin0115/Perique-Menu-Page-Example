@@ -45,7 +45,7 @@ class Menu_Page_Group extends Abstract_Group {
 	 *
 	 * @var array
 	 */
-	protected $pages = array( Parent_Page::class, Child_Page::class );
+	protected $pages = array( Child_Page::class, Parent_Page::class );
 
 	/**
 	 * The capability required to access the group.
