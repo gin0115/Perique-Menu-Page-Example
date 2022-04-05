@@ -3,7 +3,9 @@
 declare(strict_types=1);
 
 /**
- * Primary valid page.
+ * The parent page.
+ *
+ * Handles settings with use of the loader() callback for form handling.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
