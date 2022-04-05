@@ -2,7 +2,7 @@
 
 This is a simple plugin created using the `PinkCrab Perique Framework`. It show cases the `Perique_Admin_Menu` module, which makes it easy to create Pages and Page Groups. All through the DI Container allowing you to keep your domains separated and testable.
 
-> [`Perique_Admin_Menu on Github`](https://github.com/Pink-Crab/Perique_Admin_Menu)
+> [**Perique_Admin_Menu on Github**](https://github.com/Pink-Crab/Perique_Admin_Menu)
 
 ## Setup
 
