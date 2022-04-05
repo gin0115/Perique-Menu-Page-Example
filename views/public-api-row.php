@@ -3,7 +3,7 @@
  * Public API Row (sub) Template
  *
  * Available variables:
- * @var string                 $key   The current row key
+ * @var int                    $key   The current row key
  * @var array{                 $row   The current row
  *    count:int,
  *    entries:array{
