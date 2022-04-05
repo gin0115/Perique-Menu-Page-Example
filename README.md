@@ -27,7 +27,7 @@ $app = ( new App_Factory() )
     ],
   ])    
   ->construct_registration_middleware( Page_Middleware::class )
-  ->registration_classes( array( Menu_Page_Group::class ) )
+  ->registration_classes( [Menu_Page_Group::class] )
   ->boot();
 ```
 
