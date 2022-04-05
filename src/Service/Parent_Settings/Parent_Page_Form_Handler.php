@@ -22,13 +22,11 @@ declare(strict_types=1);
  * @package Gin0115\Perique_Menu_Example
  */
 
-namespace Gin0115\Perique_Menu_Example\Service;
+namespace Gin0115\Perique_Menu_Example\Service\Parent_Settings;
 
-use PinkCrab\Loader\Hook_Loader;
-use PinkCrab\Perique\Interfaces\Hookable;
-use Gin0115\Perique_Menu_Example\Page\Parent_Page;
+use Gin0115\Perique_Menu_Example\Service\Parent_Settings\Parent_Page_Settings;
 
-class Parent_Page_Form_Handler implements Hookable {
+class Parent_Page_Form_Handler {
 
 	/**
 	 * The nonce key used for the form handling.
@@ -58,20 +56,6 @@ class Parent_Page_Form_Handler implements Hookable {
 	 */
 	public function __construct( Parent_Page_Settings $page_settings ) {
 		$this->page_settings = $page_settings;
-	}
-
-	/**
-	 * Allows the wiring of hook calls for this handler
-	 *
-	 * This method is required as per the Hookable interface.
-	 * @see https://github.com/Pink-Crab/Perique-Framework/blob/master/src/Interfaces/Hookable.php
-	 *
-	 * @param \PinkCrab\Loader\Hook_Loader $loader
-	 * @return void
-	 */
-	public function register( Hook_Loader $loader ): void {
-		// Register the primary page, pre render hook.
-		$loader->admin_action( 'toplevel_page_' . Parent_Page::PAGE_SLUG, array( $this, 'run' ) );
 	}
 
 	/**

@@ -12,14 +12,12 @@
  * License: MIT
  **/
 
-use PinkCrab\Perique\Services\View\View;
 use PinkCrab\Perique\Interfaces\Renderable;
 use PinkCrab\Perique\Application\App_Factory;
 use PinkCrab\Perique\Services\View\PHP_Engine;
-use Gin0115\Perique_Menu_Example\Service\Page_Assets;
 use Gin0115\Perique_Menu_Example\Page\Menu_Page_Group;
-use Gin0115\Perique_Menu_Example\Service\Parent_Page_Form_Handler;
 use PinkCrab\Perique_Admin_Menu\Registration_Middleware\Page_Middleware;
+use Gin0115\Perique_Menu_Example\Service\Parent_Settings\Parent_Page_Form_Handler;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -49,7 +47,6 @@ $app = ( new App_Factory() )
 		array(
 			Menu_Page_Group::class,
 			Parent_Page_Form_Handler::class,
-			Page_Assets::class,
 		)
 	)
 
@@ -59,14 +56,3 @@ $app = ( new App_Factory() )
 	// App is now setup, just boot.
 	->boot();
 
-add_action(
-	'init',
-	function() use ( $app ) {
-
-		// if admin, return
-		if ( is_admin() ) {
-			return;
-		}
-		// dump( $app, $app::make( View::class ), );
-	}
-);

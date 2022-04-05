@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 namespace Gin0115\Perique_Menu_Example\Page;
 
+use PinkCrab\Perique_Admin_Menu\Page\Page;
 use PinkCrab\Perique_Admin_Menu\Page\Menu_Page;
 use Gin0115\Perique_Menu_Example\Page\Parent_Page;
 use Gin0115\Perique_Menu_Example\Service\Translations;
@@ -82,4 +83,24 @@ class Child_Page extends Menu_Page {
 		);
 
 	}
+
+	/**
+	 * Enqueues scripts and styles for this page only.
+	 *
+	 * @return void
+	 */
+	public function enqueue( Page $page ): void {
+		// Does nothing, added as an example.
+	}
+
+	/**
+	 * Handles the load page hook for this page.
+	 *
+	 * @param Page $page
+	 * @return void
+	 */
+	public function load( Page $page ): void {
+		// Does nothing, added as an example.
+	}
+
 }

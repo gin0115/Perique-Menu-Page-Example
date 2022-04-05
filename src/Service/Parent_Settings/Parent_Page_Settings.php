@@ -22,7 +22,7 @@ declare(strict_types=1);
  * @package Gin0115\Perique_Menu_Example
  */
 
-namespace Gin0115\Perique_Menu_Example\Service;
+namespace Gin0115\Perique_Menu_Example\Service\Parent_Settings;
 
 /**
  * This is a sample of a repository type service for settings.

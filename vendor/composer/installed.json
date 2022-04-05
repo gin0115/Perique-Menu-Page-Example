@@ -118,17 +118,17 @@
         },
         {
             "name": "pinkcrab/perique-admin-menu",
-            "version": "0.1.2",
-            "version_normalized": "0.1.2.0",
+            "version": "0.2.0",
+            "version_normalized": "0.2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Pink-Crab/Perique_Admin_Menu.git",
-                "reference": "fe673f99cb3448baf440c4736c15abd958ad3a42"
+                "reference": "ae864d3aced48b35aa41ac8a302919717f41e2f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Pink-Crab/Perique_Admin_Menu/zipball/fe673f99cb3448baf440c4736c15abd958ad3a42",
-                "reference": "fe673f99cb3448baf440c4736c15abd958ad3a42",
+                "url": "https://api.github.com/repos/Pink-Crab/Perique_Admin_Menu/zipball/ae864d3aced48b35aa41ac8a302919717f41e2f2",
+                "reference": "ae864d3aced48b35aa41ac8a302919717f41e2f2",
                 "shasum": ""
             },
             "require": {
@@ -149,7 +149,7 @@
                 "wp-phpunit/wp-phpunit": "^5.9",
                 "yoast/phpunit-polyfills": "^0.2.0 || ^1.0.0"
             },
-            "time": "2022-04-02T13:32:14+00:00",
+            "time": "2022-04-04T23:42:37+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -174,7 +174,7 @@
             "homepage": "https://pinkcrab.co.uk",
             "support": {
                 "issues": "https://github.com/Pink-Crab/Perique_Admin_Menu/issues",
-                "source": "https://github.com/Pink-Crab/Perique_Admin_Menu/tree/0.1.2"
+                "source": "https://github.com/Pink-Crab/Perique_Admin_Menu/tree/0.2.0"
             },
             "install-path": "../pinkcrab/perique-admin-menu"
         },

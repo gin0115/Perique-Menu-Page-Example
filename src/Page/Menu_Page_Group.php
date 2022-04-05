@@ -24,6 +24,8 @@ declare(strict_types=1);
 
 namespace Gin0115\Perique_Menu_Example\Page;
 
+use PinkCrab\Perique_Admin_Menu\Page\Page;
+use PinkCrab\Perique\Application\App_Config;
 use Gin0115\Perique_Menu_Example\Page\Child_Page;
 use Gin0115\Perique_Menu_Example\Page\Parent_Page;
 use PinkCrab\Perique_Admin_Menu\Group\Abstract_Group;
@@ -66,14 +68,52 @@ class Menu_Page_Group extends Abstract_Group {
 	 */
 	protected $position = 65;
 
+		/**
+	 * Access to the plugins config
+	 * @var App_Config
+	 */
+	private $app_config;
+
 	/**
 	 * Is constructed using the DI Container
 	 * Translations is passed constructed, automatically.
 	 *
 	 * @param Translations $translations
 	 */
-	public function __construct( Translations $translations ) {
+	public function __construct( Translations $translations, App_Config $app_config ) {
 		// Define the group title from the injected TRANSLATIONS service.
 		$this->group_title = $translations->get_menu_group_title();
+
+		// Set app config for path access
+		$this->app_config = $app_config;
+	}
+
+	/**
+	 * Load hook callback for all pages in this group.
+	 *
+	 * @param Abstract_Group $group
+	 * @param Page $page
+	 * @return void
+	 */
+	public function load( Abstract_Group $group, Page $page ): void {
+		// Doing nothing here, just used as an example.
+	}
+
+	/**
+	 * Callback for enqueuing scripts and styles at a group level.
+	 *
+	 * @param Abstract_Group $group
+	 * @param Page $page
+	 * @return void
+	 * @codeCoverageIgnore This can't be tested as it does nothing and is extended only
+	 */
+	public function enqueue( Abstract_Group $group, Page $page ): void {
+		// Enqueue the custom page assets.
+		\wp_enqueue_style(
+			'perique-menu-example-primary-page-style',
+			$this->app_config->url( 'assets' ) . 'perique-page.css',
+			array(),
+			$this->app_config->version()
+		);
 	}
 }

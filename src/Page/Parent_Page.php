@@ -24,10 +24,11 @@ declare(strict_types=1);
 
 namespace Gin0115\Perique_Menu_Example\Page;
 
+use PinkCrab\Perique_Admin_Menu\Page\Page;
 use PinkCrab\Perique_Admin_Menu\Page\Menu_Page;
 use Gin0115\Perique_Menu_Example\Service\Translations;
-use Gin0115\Perique_Menu_Example\Service\Parent_Page_Settings;
-use Gin0115\Perique_Menu_Example\Service\Parent_Page_Form_Handler;
+use Gin0115\Perique_Menu_Example\Service\Parent_Settings\Parent_Page_Settings;
+use Gin0115\Perique_Menu_Example\Service\Parent_Settings\Parent_Page_Form_Handler;
 
 class Parent_Page extends Menu_Page {
 
@@ -62,13 +63,21 @@ class Parent_Page extends Menu_Page {
 	protected $settings_service;
 
 	/**
+	 * Parent Form Handler
+	 *
+	 * @var Parent_Page_Form_Handler
+	 */
+	protected $form_handler;
+
+	/**
 	 * Create the page, using injected services.
 	 *
 	 * @param \Gin0115\Perique_Menu_Example\Service\Translations $translations
 	 */
 	public function __construct(
 		Translations $translations,
-		Parent_Page_Settings $settings_service
+		Parent_Page_Settings $settings_service,
+		Parent_Page_Form_Handler $form_handler
 	) {
 		// Set the title using the translations service.
 		$this->menu_title = $translations->get_parent_menu_title();
@@ -77,6 +86,9 @@ class Parent_Page extends Menu_Page {
 		// Handles the reading and writing of settings.
 		$this->settings_service = $settings_service;
 
+		// Handles the form submission.
+		$this->form_handler = $form_handler;
+
 		// Populate the view data.
 		$this->view_data = array(
 			'settings'     => $this->settings_service,
@@ -84,6 +96,15 @@ class Parent_Page extends Menu_Page {
 			'translations' => $translations,
 			'page'         => $this,
 		);
+	}
 
+	/**
+	 * Runs the form handler before the page is loaded.
+	 *
+	 * @param Page $page
+	 * @return void
+	 */
+	public function load( Page $page ): void {
+		$this->form_handler->run();
 	}
 }

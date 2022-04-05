@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'e90c2df10834871b932be54df664ab1bcbeb5710',
+        'reference' => 'f872b0be621e7f0dba6350930e40fec6fc9fe2c6',
         'name' => 'gin0115/perique-menu-page-example',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'e90c2df10834871b932be54df664ab1bcbeb5710',
+            'reference' => 'f872b0be621e7f0dba6350930e40fec6fc9fe2c6',
             'dev_requirement' => false,
         ),
         'level-2/dice' => array(
@@ -38,12 +38,12 @@
             'dev_requirement' => false,
         ),
         'pinkcrab/perique-admin-menu' => array(
-            'pretty_version' => '0.1.2',
-            'version' => '0.1.2.0',
+            'pretty_version' => '0.2.0',
+            'version' => '0.2.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../pinkcrab/perique-admin-menu',
             'aliases' => array(),
-            'reference' => 'fe673f99cb3448baf440c4736c15abd958ad3a42',
+            'reference' => 'ae864d3aced48b35aa41ac8a302919717f41e2f2',
             'dev_requirement' => false,
         ),
         'pinkcrab/perique-framework-core' => array(
