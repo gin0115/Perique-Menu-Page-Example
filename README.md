@@ -33,9 +33,10 @@ Perique is bootstrapped as normal. The base view path is defined `/views` in thi
 
 ### Menu Group
 
+![Menu Group in WP Admin](docs/Menu_Group_Preview.png)
+
 This created a group for our pages, unlike adding the page and sub pages manually, this allows for the parent group to have its own `menu_title`, independent to the primary page.
 
-![Menu Group in WP Admin](docs/Menu_Group_Preview.png)
 
 ```php
 class Menu_Page_Group extends Abstract_Group {
