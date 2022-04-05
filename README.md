@@ -149,13 +149,10 @@ This acts as our primary page for the group, clicking either the group title or 
 
 ```php
 <div class="wrap">
-  <h2><?php echo $translations->get_parent_page_title(); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, escaped in translations ?></h2>
-
+  <h2><?php echo $translations->get_parent_page_title(); ?></h2>
   <div id="primary_page_settings_form">
-
     <form action="" method="post">
       <input type="hidden" name="primary_page_nonce" value="<?php echo \esc_html( $nonce ); ?>">
-
       <div class="form-field">
         <label for="setting_1">
           Setting 1
@@ -163,7 +160,6 @@ This acts as our primary page for the group, clicking either the group title or 
             value="<?php echo $settings->get_setting_1(); ?>">
         </label>
       </div>
-
       <div class="form-field">
         <label for="setting_2">
           Setting 2
@@ -171,14 +167,14 @@ This acts as our primary page for the group, clicking either the group title or 
             value="<?php echo $settings->get_setting_2(); ?>">
         </label>
       </div>
-
       <div class="form-field">
         <input class="button" type="submit" value="Update Settings">
       </div>
-
     </form>
-
   </div>
 </div> 
-
 ```
+* The template makes use of the `Translations` class to access the parent page title (`$page->page_title()` could also have been used)
+* The nonce value is defined as part of the view data using `$nonce`, this allows for a simple and clean `echo` of it value.
+* The setting values are fetched form the `Plugin_Settings` object, passed to the view as `$settings`
+* In an ideal world, all labels and any other string would be handled by the `Translations` service also. Removing any string literals and magic numbers from the template.
