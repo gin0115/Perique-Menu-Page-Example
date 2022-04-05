@@ -147,6 +147,8 @@ class Parent_Page extends Menu_Page {
 ### Parent_Page \[View\]
 This acts as our primary page for the group, clicking either the group title or the page in the sub menu will access the page.
 
+![Parent View Screenshot](docs/Parent_Page_View.png)
+
 ```php
 <div class="wrap">
   <h2><?php echo $translations->get_parent_page_title(); ?></h2>
