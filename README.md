@@ -215,6 +215,8 @@ class Child_Page extends Menu_Page {
 ### Child_Page \[View\]
 The view for the child page, we make use of the `Renderable` objects `render()` method to break the templated in 2 sections. As with the parent page, we make use of the shared CSS defined in the Group.
 
+![Child Page View](docs/Child_Page_View.png)
+
 ```php
 // child-page.php
 <div class="wrap">
