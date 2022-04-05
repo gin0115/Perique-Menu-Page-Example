@@ -12,6 +12,8 @@ If you would like to see this plugin in action, please clone the repository to a
 
 > For more details on bootstrapping Perique, please visit [perique.info](https://perique.info)
 
+### Perique Bootstrapping
+
 ```php
 // file perique-menu-page.php (plugin entry file)
 require_once __DIR__ . '/vendor/autoload.php';
@@ -24,6 +26,12 @@ $app = ( new App_Factory() )
   ->boot();
 ```
 Perique is bootstrapped as normal. The base view path is defined `/views` in this example (not shown here)
-* We then define the `Page_Middleware`, this allow the use of `Page` and `Group` objects to be registered via the [**Registration Process**](https://perique.info/core/Registration/) at boot time.
+* We then define the `Page_Middleware`, this allow the use of `Page` and `Group` objects to be registered via the [**Registration Process**](https://perique.info/core/Registration/) at boot time. This added using `construct_registration_middleware`, so all middleware dependencies are injected by the [DI Container](https://perique.info/core/DI)
+* The `Menu_Page_Group` class is added to the list of [Registration Classes](https://perique.info/core/App/setup#configregistrationphp). This allows the group and its pages to be registered with WP_Admin and constructed via the DI Container with any dependencies injected.
+
+
+
+### Menu Group
+
 
 
