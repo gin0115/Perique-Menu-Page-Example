@@ -20,8 +20,7 @@
 ?>
 <div id="api-<?php echo \absint( $key ); ?>" class="api-item__container">
 	<div class="api-item__details">
-		<h3><?php echo \esc_html( $row['API'] ); ?><span>(<?php echo \esc_html( $row['Category'] ); ?>)</span>
-		</h3>
+		<h3><?php echo \esc_html( $row['API'] ); ?><span>(<?php echo \esc_html( $row['Category'] ); ?>)</span></h3>
 		<p><?php echo \esc_html( $row['Description'] ); ?></p>
 		<p><?php echo \esc_url( $row['Link'] ); ?></p>
 	</div>
